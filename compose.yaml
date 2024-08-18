@@ -1,0 +1,49 @@
+services:
+  limesurvey:
+    build:
+      context: limesurvey/
+      dockerfile: Dockerfile
+    container_name: limesurvey
+    volumes:
+      - /tmp/upload/surveys:/var/www/html/upload/surveys
+      - lime:/var/www/html
+    links:
+      - db
+    depends_on:
+      - db
+    environment:
+      DB_TYPE: pgsql
+      DB_HOST: db
+      DB_PORT: '5432'
+      DB_PASSWORD: ${DB_PASSWORD}
+      ADMIN_USER: ${ADMIN_USER}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+  web:
+    build:
+      context: nginx/
+      dockerfile: Dockerfile
+    container_name: web
+    links:
+      - limesurvey
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/letsencrypt
+      - lime:/var/www/html
+  db:
+    image: postgres:latest
+    container_name: db
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    #image: mysql:5.7
+    #environment:
+    #  MYSQL_USER: ${MYSQL_USER}
+    #  MYSQL_DATABASE: ${MYSQL_DATABASE}
+    #  MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    #  MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+volumes:
+  lime:
