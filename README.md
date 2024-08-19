@@ -1,20 +1,18 @@
 ## Notas
 
--  **Código tomado del repositorio** [docker-limersurvey](https://github.com/martialblog/docker-limesurvey)
+-  **Código base tomado del repositorio** [docker-limersurvey](https://github.com/martialblog/docker-limesurvey) 
+- Llenar las variables del archivo `.env.local` y renombrarlo a `.env`
+- Colocar los archivos del certificado en la carpeta ssl en caso de tenerlos.
+	- Nombrar los archivos: `cert.pem` y `key.pem`
+- En caso de no tener los archivos del certificado, configurar la variable `HOSTNAME` en el archivo `.env` para generar automáticamente los archivos del certificado utilizando la herramienta [mkcert]
 
-  -  **Creación de certificado SSL** [mkcert](https://github.com/FiloSottile/mkcert)
+## Comandos docker
 
-- colocar los archivos del certificado en la carpeta ssl
-- nombrar los archivos: `fullchain.pem` y `privkey.pem`
-- llenar las variables del archivo `.env.local` y renombrarlo a `.env`
-
- ## Comandos docker
-
-**Levantar el contenedor**
+  **Levantar el contenedor**
 `docker compose up -d`
 `docker compose up --build -d`
 
-**Detener el contenedor**
+  **Detener el contenedor**
 `docker compose stop`
 
   **Detener y eliminar el contenedor**

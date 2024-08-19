@@ -32,6 +32,8 @@ services:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./ssl:/etc/letsencrypt
       - lime:/var/www/html
+    environment:
+      HOSTNAME: ${HOSTNAME}
   db:
     image: postgres:latest
     container_name: db

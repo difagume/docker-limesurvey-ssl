@@ -1,3 +1,2 @@
 .env
-ssl/fullchain.pem
-ssl/privkey.pem
+ssl/*

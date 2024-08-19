@@ -1,3 +1,5 @@
 FROM nginx:stable
 
-CMD ["nginx", "-g", "daemon off;"]
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod 700 /entrypoint.sh
+CMD ["/entrypoint.sh"]
