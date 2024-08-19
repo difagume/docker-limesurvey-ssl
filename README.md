@@ -6,7 +6,7 @@
 
 - colocar los archivos del certificado en la carpeta ssl
 - nombrar los archivos: `fullchain.pem` y `privkey.pem`
-- llenar las variables del archivo `.env.local`
+- llenar las variables del archivo `.env.local` y renombrarlo a `.env`
 
  ## Comandos docker
 
