@@ -33,7 +33,7 @@ services:
       - ./ssl:/etc/letsencrypt
       - lime:/var/www/html
     environment:
-      HOSTNAME: ${HOSTNAME}
+      DOMAIN: ${DOMAIN}
   db:
     image: postgres:latest
     container_name: db

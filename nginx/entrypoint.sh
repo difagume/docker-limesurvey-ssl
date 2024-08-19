@@ -6,7 +6,7 @@ mkdir -p $cert_path
 # if there is no certificate yet, get one
 if [ ! -e "$cert_path/key.pem" ]
 then
-    echo "Instalando mkcert y generando certificado para $HOSTNAME"
+    echo "Instalando mkcert y generando certificado para $DOMAIN"
     set -ex
 
     # Actualizar la lista de paquetes
@@ -21,7 +21,7 @@ then
     rm -rf /var/lib/apt/lists/*
 
     # Generar certificados con mkcert
-    mkcert -key-file "$cert_path/key.pem" -cert-file "$cert_path/cert.pem" "$HOSTNAME" "*.$HOSTNAME"
+    mkcert -key-file "$cert_path/key.pem" -cert-file "$cert_path/cert.pem" "$DOMAIN" "*.$DOMAIN"
 fi
 
 nginx -g "daemon off;"
